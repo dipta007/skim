@@ -30,6 +30,7 @@ def test_display_labels():
 def test_main_version(capsys):
     import pytest
     from skim.cli import main
+
     with pytest.raises(SystemExit, match="0"):
         sys.argv = ["skim", "--version"]
         main()
@@ -40,6 +41,7 @@ def test_main_version(capsys):
 def test_main_no_args(capsys):
     import pytest
     from skim.cli import main
+
     with pytest.raises(SystemExit):
         sys.argv = ["skim"]
         main()
@@ -48,6 +50,7 @@ def test_main_no_args(capsys):
 def test_main_init_dispatches(monkeypatch):
     from unittest.mock import patch
     from skim.cli import main
+
     monkeypatch.setattr("sys.argv", ["skim", "init"])
     with patch("skim.cli.run_init") as mock_init:
         main()
