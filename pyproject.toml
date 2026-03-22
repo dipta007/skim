@@ -1,0 +1,39 @@
+[project]
+name = "skim"
+version = "0.1.0"
+description = "Generate plain-language narratives and technical summaries from arxiv papers"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.14"
+authors = [
+    { name = "Shubhashis Roy Dipta", email = "iamdipta@gmail.com" },
+]
+dependencies = [
+    "openai>=2.29.0",
+    "rich>=14.0.0",
+    "httpx>=0.28.0",
+    "tomli_w>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://roydipta.com"
+Repository = "https://github.com/dipta007/skim"
+
+[project.scripts]
+skim = "skim.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.11.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/skim"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

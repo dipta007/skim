@@ -1,0 +1,46 @@
+import base64
+import importlib.resources
+from pathlib import Path
+
+from openai import OpenAI
+
+from skim.config import Config
+
+PROMPT_MAP = {
+    "story": "story.md",
+    "deep": "deep.md",
+}
+
+
+def generate_summary(pdf_path: Path, summary_type: str, config: Config) -> str:
+    prompt_path = importlib.resources.files("skim.prompts") / PROMPT_MAP[summary_type]
+    system_prompt = prompt_path.read_text(encoding="utf-8")
+
+    pdf_base64 = base64.b64encode(pdf_path.read_bytes()).decode("utf-8")
+
+    client = OpenAI(api_key=config.api_key, base_url=config.base_url)
+
+    response = client.chat.completions.create(
+        model=config.model,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "file",
+                        "file": {
+                            "filename": pdf_path.name,
+                            "file_data": f"data:application/pdf;base64,{pdf_base64}",
+                        },
+                    },
+                    {
+                        "type": "text",
+                        "text": "Generate the summary for this paper.",
+                    },
+                ],
+            },
+        ],
+    )
+
+    return response.choices[0].message.content
