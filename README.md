@@ -79,6 +79,10 @@ make lint       # Check code style
 make format     # Auto-format code
 ```
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code style, and PR guidelines.
+
 ## License
 
 MIT

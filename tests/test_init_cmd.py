@@ -1,7 +1,6 @@
-from pathlib import Path
 from unittest.mock import patch
 from skim.init_cmd import run_init
-from skim.config import config_path, load_config
+from skim.config import load_config
 
 
 def test_run_init_creates_config(monkeypatch, tmp_path):
@@ -28,7 +27,7 @@ def test_run_init_overwrite_declined(monkeypatch, tmp_path):
     cfg_dir.mkdir()
     (cfg_dir / "config.toml").write_text("existing")
 
-    with patch("skim.init_cmd.Prompt.ask", return_value="n") as mock_ask:
+    with patch("skim.init_cmd.Prompt.ask", return_value="n"):
         with patch("skim.init_cmd.Confirm.ask", return_value=False):
             run_init()
 
