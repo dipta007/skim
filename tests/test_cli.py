@@ -35,7 +35,7 @@ def test_main_version(capsys):
         sys.argv = ["skim", "--version"]
         main()
     captured = capsys.readouterr()
-    assert "0.1.0" in captured.out
+    assert "0.2.0" in captured.out
 
 
 def test_main_no_args(capsys):
