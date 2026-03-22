@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import importlib.resources
 from pathlib import Path
 
@@ -10,6 +11,12 @@ PROMPT_MAP = {
     "story": "story.md",
     "deep": "deep.md",
 }
+
+
+def prompt_hash(summary_type: str) -> str:
+    prompt_path = importlib.resources.files("skim.prompts") / PROMPT_MAP[summary_type]
+    content = prompt_path.read_text(encoding="utf-8")
+    return hashlib.sha256(content.encode()).hexdigest()[:8]
 
 
 def generate_summary(pdf_path: Path, summary_type: str, config: Config) -> str:
