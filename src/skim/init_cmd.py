@@ -41,7 +41,15 @@ def run_init() -> None:
         default_model = existing.model if existing else "gpt-5.4-nano"
 
         base_url = Prompt.ask("[bold]Base URL[/]", default=default_base_url)
-        api_key = Prompt.ask("[bold]API key[/]", default=default_api_key)
+        if default_api_key:
+            masked = default_api_key[:3] + "..." + default_api_key[-4:]
+            api_key = Prompt.ask(
+                f"[bold]API key[/] [dim]({masked})[/dim] press enter to keep",
+                default=default_api_key,
+                show_default=False,
+            )
+        else:
+            api_key = Prompt.ask("[bold]API key[/]")
         model = Prompt.ask("[bold]Model[/]", default=default_model)
     else:
         base_url = ""
