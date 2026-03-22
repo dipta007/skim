@@ -19,7 +19,7 @@ def prompt_hash(summary_type: str) -> str:
     return hashlib.sha256(content.encode()).hexdigest()[:8]
 
 
-def generate_summary(pdf_path: Path, summary_type: str, config: Config) -> str:
+def _generate_openai(pdf_path: Path, summary_type: str, config: Config) -> str:
     prompt_path = importlib.resources.files("skim.prompts") / PROMPT_MAP[summary_type]
     system_prompt = prompt_path.read_text(encoding="utf-8")
 
@@ -51,3 +51,11 @@ def generate_summary(pdf_path: Path, summary_type: str, config: Config) -> str:
     )
 
     return response.choices[0].message.content
+
+
+def generate_summary(pdf_path: Path, summary_type: str, config: Config) -> str:
+    if config.backend == "claude":
+        from skim.claude_backend import generate_summary_claude
+
+        return generate_summary_claude(pdf_path, summary_type, config)
+    return _generate_openai(pdf_path, summary_type, config)
