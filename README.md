@@ -59,6 +59,15 @@ Claude reads the paper and generates the summary directly.
 | `story` | A plain-language, analogy-driven narrative — no jargon, no equations            |
 | `deep`  | A structured technical summary with methodology, results, and key contributions |
 
+## Cache Management
+
+Summaries are cached locally so repeated lookups are instant. To clear the cache:
+
+```bash
+skim clean                    # remove all cached summaries
+skim clean -p 2509.16538      # remove cache for a specific paper
+```
+
 ## Configuration
 
 Config lives at `~/.config/skim/config.toml`. Re-run `skim init` to change settings.
