@@ -15,11 +15,17 @@ Generate plain-language narratives and technical summaries from arxiv papers.
 ### Option 1: CLI Tool
 
 Install once, use anywhere from your terminal.
+For other installation methods, see the [Install](#install) section below.
 
 ```bash
-uv tool install git+https://github.com/dipta007/skim   # or pipx, or pip
-skim init                                                # pick backend + configure
-skim -p 2509.16538 -t story                              # generate summary
+uv tool install git+https://github.com/dipta007/skim    # or pipx, or pip
+skim init                                               # pick backend + configure
+skim -p 2509.16538 -t story                             # plain-language narrative
+skim -p 2509.16538 -t deep                              # technical summary
+skim -p 2509.16538 -t all                               # both
+skim -p https://arxiv.org/abs/2509.16538 -t story       # works with URLs too
+skim -p 2509.16538 -t story --output-dir ./custom/      # custom output dir
+cd $(skim cd)                                           # jump to output directory
 ```
 
 During `skim init`, choose your backend:
@@ -36,27 +42,16 @@ If you're already in Claude Code, install the plugin and use slash commands — 
 /plugin install skim@dipta007-skim
 ```
 
-Then:
+Then, inside your claude-code:
 
 ```
-/skim:story 2509.16538
-/skim:deep 2509.16538
+/story 2509.16538
+/deep 2509.16538
 ```
 
 Claude reads the paper and generates the summary directly.
 
 ---
-
-## Usage (CLI)
-
-```bash
-skim -p 2509.16538 -t story                        # plain-language narrative
-skim -p 2509.16538 -t deep                         # technical summary
-skim -p 2509.16538 -t all                          # both
-skim -p https://arxiv.org/abs/2509.16538 -t story  # works with URLs too
-skim -p 2509.16538 -t story --output-dir ./custom/ # custom output dir
-cd $(skim cd)                                      # jump to output directory
-```
 
 ## Summary Types
 
