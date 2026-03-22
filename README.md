@@ -4,11 +4,11 @@ Generate plain-language narratives and technical summaries from arxiv papers.
 
 ## Three Ways to Use skim
 
-| #   | Method                                                 | Best for                                                                          | API key needed? |
-| --- | ------------------------------------------------------ | --------------------------------------------------------------------------------- | --------------- |
-| 1   | [**CLI + OpenAI**](#option-1-cli--openai)              | Regular use, any OpenAI-compatible API (OpenAI, OpenRouter, Ollama, local models) | Yes             |
-| 2   | [**CLI + Claude**](#option-2-cli--claude)              | Already have a Claude Code subscription, don't want another API key               | No              |
-| 3   | [**Claude Code Plugin**](#option-3-claude-code-plugin) | Already inside Claude Code, want one-command summaries                            | No              |
+| #   | Method                                                 | Best for                                                                          | API key needed? | Cached? |
+| --- | ------------------------------------------------------ | --------------------------------------------------------------------------------- | --------------- | ------- |
+| 1   | [**CLI + OpenAI**](#option-1-cli--openai)              | Regular use, any OpenAI-compatible API (OpenAI, OpenRouter, Ollama, local models) | Yes             | Yes     |
+| 2   | [**CLI + Claude**](#option-2-cli--claude)              | Already have a Claude Code subscription, don't want another API key               | No              | Yes     |
+| 3   | [**Claude Code Plugin**](#option-3-claude-code-plugin) | Already inside Claude Code, want one-command summaries                            | No              | No      |
 
 ---
 
