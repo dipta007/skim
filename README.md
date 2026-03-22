@@ -44,6 +44,15 @@ This walks you through picking a backend and creates a config at `~/.config/skim
 
 **Claude**: Uses your existing [Claude Code](https://claude.ai/code) subscription — no API key needed. Requires the `claude` CLI to be installed and logged in. Slower than the OpenAI backend (~30-60s per summary due to subprocess overhead) but free if you already have a Claude Pro/Max plan.
 
+**As a Claude Code plugin:**
+
+```
+/plugin marketplace add dipta007/skim
+/plugin install skim@dipta007-skim
+```
+
+Then use `/skim:story 2509.16538` or `/skim:deep 2509.16538` inside Claude Code.
+
 ## Usage
 
 ```bash
