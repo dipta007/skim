@@ -18,7 +18,7 @@ def test_config_path_xdg(monkeypatch, tmp_path):
 def test_save_and_load_config(monkeypatch, tmp_path):
     monkeypatch.setenv("XDG_CONFIG_HOME", str(tmp_path))
     cfg = Config(
-        backend="openai-compatible",
+        backend="openai",
         api_key="sk-test",
         base_url="https://api.openai.com/v1",
         model="gpt-5.4-nano",
@@ -26,7 +26,7 @@ def test_save_and_load_config(monkeypatch, tmp_path):
     )
     save_config(cfg)
     loaded = load_config()
-    assert loaded.backend == "openai-compatible"
+    assert loaded.backend == "openai"
     assert loaded.api_key == "sk-test"
     assert loaded.base_url == "https://api.openai.com/v1"
     assert loaded.model == "gpt-5.4-nano"
@@ -51,7 +51,7 @@ def test_load_config_empty_api_key(monkeypatch, tmp_path):
         tomli_w.dumps(
             {
                 "api": {
-                    "backend": "openai-compatible",
+                    "backend": "openai",
                     "key": "",
                     "base_url": "x",
                     "model": "y",

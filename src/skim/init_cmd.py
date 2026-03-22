@@ -26,14 +26,14 @@ def run_init() -> None:
 
     console.print("[bold]Setting up skim...[/]\n")
 
-    default_backend = existing.backend if existing else "openai-compatible"
+    default_backend = existing.backend if existing else "openai"
     backend = Prompt.ask(
         "[bold]Backend[/] (openai or claude)",
-        choices=["openai-compatible", "claude"],
+        choices=["openai", "claude"],
         default=default_backend,
     )
 
-    if backend == "openai-compatible":
+    if backend == "openai":
         default_base_url = (
             existing.base_url if existing else "https://api.openai.com/v1"
         )

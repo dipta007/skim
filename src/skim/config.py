@@ -12,7 +12,7 @@ err_console = Console(stderr=True)
 
 @dataclass(frozen=True)
 class Config:
-    backend: str  # "openai-compatible" or "claude"
+    backend: str  # "openai" or "claude"
     api_key: str
     base_url: str
     model: str
@@ -36,10 +36,10 @@ def load_config() -> Config:
     with open(path, "rb") as f:
         data = tomllib.load(f)
 
-    backend = data.get("api", {}).get("backend", "openai-compatible")
+    backend = data.get("api", {}).get("backend", "openai")
     api_key = data.get("api", {}).get("key", "")
 
-    if backend == "openai-compatible" and not api_key:
+    if backend == "openai" and not api_key:
         err_console.print(
             "[red bold]Error:[/] API key not set. Run [cyan]skim init[/] to configure."
         )
