@@ -54,3 +54,6 @@ cli.py → latex.py
 - Never add `Co-Authored-By: Claude` to commits.
 - Git hooks block commits/pushes on lint/test failures. Run `make format` before committing.
 - When adding new fields to `Config` dataclass, update: `config.py`, `init_cmd.py`, `save_config()`, all test files that construct `Config(...)`.
+- When bumping version in `pyproject.toml` and `__init__.py`, also update: `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and `tests/test_cli.py::test_main_version`.
+- Claude Code plugin cache (`~/.claude/plugins/cache/skim/`) is keyed by version. Bumping the version in `plugin.json` + `marketplace.json` is required to force users to get updated skills. Uninstall + reinstall is not enough without a version bump.
+- Skills in `skills/*/SKILL.md` must only use `name` and `description` in YAML frontmatter. Other fields (like `allowed-tools`, `argument-hint`) break skill registration silently.
