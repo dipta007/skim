@@ -1,0 +1,11 @@
+{
+  "name": "skim",
+  "description": "Summarize arxiv papers as plain-language stories or deep technical dives",
+  "version": "0.1.0",
+  "author": {
+    "name": "Shubhashis Roy Dipta"
+  },
+  "homepage": "https://github.com/dipta007/skim",
+  "repository": "https://github.com/dipta007/skim",
+  "license": "MIT"
+}
