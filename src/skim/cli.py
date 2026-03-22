@@ -50,6 +50,12 @@ def main() -> None:
     subparsers = parser.add_subparsers(dest="command")
     subparsers.add_parser("init", help="Set up skim (API key, output directory, etc.)")
     subparsers.add_parser("cd", help="Print output directory path (use: cd $(skim cd))")
+    clean_parser = subparsers.add_parser("clean", help="Clear cached summaries")
+    clean_parser.add_argument(
+        "-p",
+        "--paper",
+        help="Only clear cache for this arxiv paper ID or URL",
+    )
 
     parser.add_argument(
         "-p",
@@ -78,6 +84,30 @@ def main() -> None:
     if args.command == "cd":
         config = load_config()
         print(config.output_dir)
+        return
+
+    if args.command == "clean":
+        config = load_config()
+        output_dir = config.output_dir
+        if not output_dir.exists():
+            err_console.print("[dim]Nothing to clean.[/]")
+            return
+        if args.paper:
+            try:
+                arxiv_id = parse_arxiv_id(args.paper)
+            except ValueError as e:
+                err_console.print(f"[red bold]Error:[/] {e}")
+                sys.exit(1)
+            files = list(output_dir.glob(f"{arxiv_id}_*.md"))
+        else:
+            files = list(output_dir.glob("*.md"))
+        if not files:
+            err_console.print("[dim]Nothing to clean.[/]")
+            return
+        for f in files:
+            f.unlink()
+        label = "summary" if len(files) == 1 else "summaries"
+        err_console.print(f"[green]Removed {len(files)} cached {label}.[/]")
         return
 
     if not args.paper or not args.type:
