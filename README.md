@@ -32,13 +32,17 @@ make install
 
 ## Setup
 
-Run the interactive setup to configure your API key and output directory:
-
 ```bash
 skim init
 ```
 
-This creates a config file at `~/.config/skim/config.toml`.
+This walks you through picking a backend and creates a config at `~/.config/skim/config.toml`.
+
+### Backends
+
+**OpenAI** (or any OpenAI-compatible API): Requires an API key. Works with OpenAI, OpenRouter, Ollama, etc.
+
+**Claude**: Uses your existing [Claude Code](https://claude.ai/code) subscription — no API key needed. Requires the `claude` CLI to be installed and logged in. Slower than the OpenAI backend (~30-60s per summary due to subprocess overhead) but free if you already have a Claude Pro/Max plan.
 
 ## Usage
 
@@ -71,10 +75,12 @@ cd $(skim cd)
 
 ## Configuration
 
-Config is stored at `~/.config/skim/config.toml`:
+Config is stored at `~/.config/skim/config.toml`. Re-run `skim init` to update.
 
+**OpenAI backend:**
 ```toml
 [api]
+backend = "openai"
 key = "sk-your-key"
 base_url = "https://api.openai.com/v1"
 model = "gpt-5.4-nano"
@@ -83,7 +89,17 @@ model = "gpt-5.4-nano"
 dir = "~/papers/skim"
 ```
 
-Re-run `skim init` to update settings.
+**Claude backend:**
+```toml
+[api]
+backend = "claude"
+key = ""
+base_url = ""
+model = "sonnet"
+
+[output]
+dir = "~/papers/skim"
+```
 
 ## Development
 
