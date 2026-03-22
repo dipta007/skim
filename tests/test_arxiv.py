@@ -34,6 +34,7 @@ def test_parse_arxiv_id_invalid_url():
 
 def test_download_pdf_success():
     from skim.arxiv import download_pdf
+
     mock_response = MagicMock()
     mock_response.content = b"%PDF-1.4 fake"
     mock_response.raise_for_status = MagicMock()
@@ -46,6 +47,7 @@ def test_download_pdf_success():
 
 def test_download_pdf_http_error():
     from skim.arxiv import download_pdf
+
     with patch("skim.arxiv.httpx.get") as mock_get:
         mock_get.side_effect = httpx.HTTPStatusError(
             "404", request=MagicMock(), response=MagicMock()

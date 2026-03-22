@@ -7,12 +7,15 @@ def test_run_init_creates_config(monkeypatch, tmp_path):
     monkeypatch.setenv("XDG_CONFIG_HOME", str(tmp_path))
     output_dir = tmp_path / "papers"
 
-    with patch("skim.init_cmd.Prompt.ask", side_effect=[
-        "sk-test-key",
-        "https://api.openai.com/v1",
-        "gpt-5.4-nano",
-        str(output_dir),
-    ]):
+    with patch(
+        "skim.init_cmd.Prompt.ask",
+        side_effect=[
+            "sk-test-key",
+            "https://api.openai.com/v1",
+            "gpt-5.4-nano",
+            str(output_dir),
+        ],
+    ):
         run_init()
 
     cfg = load_config()

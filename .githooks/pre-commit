@@ -1,0 +1,16 @@
+#!/bin/sh
+echo "Running formatter..."
+uv run ruff format src/ tests/ --check
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "Code is not formatted. Run 'make format' first."
+    exit 1
+fi
+
+echo "Running linter..."
+uv run ruff check src/ tests/
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "Lint errors found. Run 'make lint' to see details."
+    exit 1
+fi

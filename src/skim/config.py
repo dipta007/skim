@@ -46,7 +46,9 @@ def load_config() -> Config:
         api_key=api_key,
         base_url=data.get("api", {}).get("base_url", "https://api.openai.com/v1"),
         model=data.get("api", {}).get("model", "gpt-5.4-nano"),
-        output_dir=Path(data.get("output", {}).get("dir", "~/papers/skim")).expanduser(),
+        output_dir=Path(
+            data.get("output", {}).get("dir", "~/papers/skim")
+        ).expanduser(),
     )
 
 

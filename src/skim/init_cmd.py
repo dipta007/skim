@@ -22,13 +22,9 @@ def run_init() -> None:
     console.print("[bold]Setting up skim...[/]\n")
 
     api_key = Prompt.ask("[bold]API key[/]")
-    base_url = Prompt.ask(
-        "[bold]Base URL[/]", default="https://api.openai.com/v1"
-    )
+    base_url = Prompt.ask("[bold]Base URL[/]", default="https://api.openai.com/v1")
     model = Prompt.ask("[bold]Model[/]", default="gpt-5.4-nano")
-    output_dir_str = Prompt.ask(
-        "[bold]Output directory[/]", default="~/papers/skim"
-    )
+    output_dir_str = Prompt.ask("[bold]Output directory[/]", default="~/papers/skim")
 
     output_dir = Path(output_dir_str).expanduser()
     output_dir.mkdir(parents=True, exist_ok=True)

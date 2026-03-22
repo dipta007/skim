@@ -46,7 +46,12 @@ def test_load_config_empty_api_key(monkeypatch, tmp_path):
     cfg_dir.mkdir()
     cfg_file = cfg_dir / "config.toml"
     cfg_file.write_text(
-        tomli_w.dumps({"api": {"key": "", "base_url": "x", "model": "y"}, "output": {"dir": "/tmp"}})
+        tomli_w.dumps(
+            {
+                "api": {"key": "", "base_url": "x", "model": "y"},
+                "output": {"dir": "/tmp"},
+            }
+        )
     )
     try:
         load_config()
