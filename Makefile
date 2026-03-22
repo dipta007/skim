@@ -3,8 +3,9 @@
 help: ## Show this help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
 
-install: ## Install dependencies
+install: ## Install dependencies and set up git hooks
 	uv sync
+	git config core.hooksPath .githooks
 
 test: ## Run tests
 	uv run pytest tests/ -v
