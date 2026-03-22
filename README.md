@@ -13,7 +13,7 @@ Or clone and install locally:
 ```bash
 git clone https://github.com/dipta007/skim.git
 cd skim
-uv sync
+make install
 ```
 
 ## Setup
@@ -73,11 +73,13 @@ Re-run `skim init` to update settings.
 ```bash
 git clone https://github.com/dipta007/skim.git
 cd skim
-make install    # Install dependencies
+make install    # Install dependencies + set up git hooks
 make test       # Run tests
 make lint       # Check code style
 make format     # Auto-format code
 ```
+
+`make install` also configures git hooks that run the formatter/linter on commit and tests on push.
 
 ## Contributing
 
