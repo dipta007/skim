@@ -39,4 +39,6 @@ We welcome contributions that use AI tools (Copilot, Claude, ChatGPT, etc.) to a
 - **Test** that the code works as intended
 - **Take responsibility** for the code they submit, regardless of how it was generated
 
+- **Update `CLAUDE.md`** if your change affects architecture, data flow, or key design decisions
+
 AI-assisted code that passes review and tests is treated the same as manually written code.
