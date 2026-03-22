@@ -24,6 +24,7 @@ def test_generate_summary_calls_openai(tmp_path):
     pdf_path.write_bytes(b"%PDF-1.4 fake content")
 
     config = Config(
+        backend="openai-compatible",
         api_key="sk-test",
         base_url="https://api.openai.com/v1",
         model="gpt-5.4-nano",
