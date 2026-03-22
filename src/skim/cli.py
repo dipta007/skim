@@ -49,11 +49,12 @@ def main() -> None:
 
     subparsers = parser.add_subparsers(dest="command")
     subparsers.add_parser("init", help="Set up skim (API key, output directory, etc.)")
+    subparsers.add_parser("cd", help="Print output directory path (use: cd $(skim cd))")
 
     parser.add_argument(
         "-p",
         "--paper",
-        help="Arxiv paper ID or URL (e.g., 2603.10165 or https://arxiv.org/abs/2603.10165)",
+        help="Arxiv paper ID or URL (e.g., 2509.16538 or https://arxiv.org/abs/2509.16538)",
     )
     parser.add_argument(
         "-t",
@@ -72,6 +73,11 @@ def main() -> None:
 
     if args.command == "init":
         run_init()
+        return
+
+    if args.command == "cd":
+        config = load_config()
+        print(config.output_dir)
         return
 
     if not args.paper or not args.type:

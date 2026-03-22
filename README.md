@@ -4,11 +4,25 @@ Generate plain-language narratives and technical summaries from arxiv papers.
 
 ## Install
 
+**With uv (recommended):**
+
 ```bash
 uv tool install git+https://github.com/dipta007/skim
 ```
 
-Or clone and install locally:
+**With pipx:**
+
+```bash
+pipx install git+https://github.com/dipta007/skim
+```
+
+**With pip:**
+
+```bash
+pip install git+https://github.com/dipta007/skim
+```
+
+**From source:**
 
 ```bash
 git clone https://github.com/dipta007/skim.git
@@ -30,19 +44,22 @@ This creates a config file at `~/.config/skim/config.toml`.
 
 ```bash
 # Generate a plain-language narrative
-skim -p 2603.10165 -t story
+skim -p 2509.16538 -t story
 
 # Generate a technical summary
-skim -p 2603.10165 -t deep
+skim -p 2509.16538 -t deep
 
 # Generate both
-skim -p 2603.10165 -t all
+skim -p 2509.16538 -t all
 
 # Use an arxiv URL
-skim -p https://arxiv.org/abs/2603.10165 -t story
+skim -p https://arxiv.org/abs/2509.16538 -t story
 
 # Override output directory
-skim -p 2603.10165 -t story --output-dir ./my-summaries/
+skim -p 2509.16538 -t story --output-dir ./my-summaries/
+
+# Jump to your output directory
+cd $(skim cd)
 ```
 
 ## Summary Types
