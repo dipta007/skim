@@ -1,9 +1,6 @@
 ---
 name: deep
-description: Generate a structured technical summary of an arxiv paper with methodology, results, and key contributions. Use when the user wants a detailed technical breakdown.
-argument-hint: <arxiv-id-or-url>
-allowed-tools:
-  - Bash
+description: "Generate a structured technical summary of an arxiv paper with methodology, results, and key contributions. Use when the user wants a detailed technical breakdown. Usage: /skim:deep <arxiv-id-or-url>"
 ---
 
 Summarize the arxiv paper `$ARGUMENTS` as a deep technical summary.

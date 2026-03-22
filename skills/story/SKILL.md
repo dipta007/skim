@@ -1,9 +1,6 @@
 ---
 name: story
-description: Generate a plain-language, analogy-driven narrative summary of an arxiv paper. Use when the user wants a simple, jargon-free explanation of a paper.
-argument-hint: <arxiv-id-or-url>
-allowed-tools:
-  - Bash
+description: "Generate a plain-language, analogy-driven narrative summary of an arxiv paper. Use when the user wants a simple, jargon-free explanation of a paper. Usage: /skim:story <arxiv-id-or-url>"
 ---
 
 Summarize the arxiv paper `$ARGUMENTS` as a plain-language story.
