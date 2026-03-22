@@ -3,38 +3,22 @@ name: story
 description: "Generate a plain-language, analogy-driven narrative summary of an arxiv paper. Use when the user wants a simple, jargon-free explanation of a paper. Usage: /skim:story <arxiv-id-or-url>"
 ---
 
-Summarize the arxiv paper `$ARGUMENTS` as a plain-language story.
+Generate a plain-language story summary of the arxiv paper `$ARGUMENTS`.
 
-First, check if `skim` is installed:
+## Steps
 
-```bash
-which skim
-```
-
-If not installed, install it:
+1. Download the paper PDF:
 
 ```bash
-uv tool install git+https://github.com/dipta007/skim
+curl -L -o /tmp/skim_paper.pdf "https://arxiv.org/pdf/$ARGUMENTS"
 ```
 
-If `uv` is not available, try:
+If `$ARGUMENTS` is a full URL, extract the arxiv ID first (the `DDDD.DDDDD` part).
 
-```bash
-pipx install git+https://github.com/dipta007/skim
-```
+2. Read the prompt instructions from `${CLAUDE_SKILL_DIR}/../../src/skim/prompts/story.md`
 
-Then check if skim is configured:
+3. Read the downloaded PDF using the Read tool at `/tmp/skim_paper.pdf`
 
-```bash
-skim cd
-```
+4. Follow the prompt instructions to generate the summary. Output ONLY the summary markdown.
 
-If it shows "Not configured", tell the user to run `skim init` in their terminal to set up their API key and output directory, then try again.
-
-Once ready, run:
-
-```bash
-skim -p $ARGUMENTS -t story
-```
-
-Display the generated summary to the user.
+5. Clean up: `rm /tmp/skim_paper.pdf`

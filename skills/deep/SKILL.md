@@ -3,38 +3,22 @@ name: deep
 description: "Generate a structured technical summary of an arxiv paper with methodology, results, and key contributions. Use when the user wants a detailed technical breakdown. Usage: /skim:deep <arxiv-id-or-url>"
 ---
 
-Summarize the arxiv paper `$ARGUMENTS` as a deep technical summary.
+Generate a deep technical summary of the arxiv paper `$ARGUMENTS`.
 
-First, check if `skim` is installed:
+## Steps
 
-```bash
-which skim
-```
-
-If not installed, install it:
+1. Download the paper PDF:
 
 ```bash
-uv tool install git+https://github.com/dipta007/skim
+curl -L -o /tmp/skim_paper.pdf "https://arxiv.org/pdf/$ARGUMENTS"
 ```
 
-If `uv` is not available, try:
+If `$ARGUMENTS` is a full URL, extract the arxiv ID first (the `DDDD.DDDDD` part).
 
-```bash
-pipx install git+https://github.com/dipta007/skim
-```
+2. Read the prompt instructions from `${CLAUDE_SKILL_DIR}/../../src/skim/prompts/deep.md`
 
-Then check if skim is configured:
+3. Read the downloaded PDF using the Read tool at `/tmp/skim_paper.pdf`
 
-```bash
-skim cd
-```
+4. Follow the prompt instructions to generate the summary. Output ONLY the summary markdown.
 
-If it shows "Not configured", tell the user to run `skim init` in their terminal to set up their API key and output directory, then try again.
-
-Once ready, run:
-
-```bash
-skim -p $ARGUMENTS -t deep
-```
-
-Display the generated summary to the user.
+5. Clean up: `rm /tmp/skim_paper.pdf`
