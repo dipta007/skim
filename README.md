@@ -4,38 +4,37 @@ Generate plain-language narratives and technical summaries from arxiv papers.
 
 ## Three Ways to Use skim
 
-| Method                                                 | Best for                                                                          | API key needed? |
-| ------------------------------------------------------ | --------------------------------------------------------------------------------- | --------------- |
-| [**CLI + OpenAI**](#option-1-cli-tool)                 | Regular use, any OpenAI-compatible API (OpenAI, OpenRouter, Ollama, local models) | Yes             |
-| [**CLI + Claude**](#option-1-cli-tool)                 | Already have a Claude Code subscription, don't want another API key               | No              |
-| [**Claude Code Plugin**](#option-2-claude-code-plugin) | Already inside Claude Code, want one-command summaries                            | No              |
+| #   | Method                                                 | Best for                                                                          | API key needed? |
+| --- | ------------------------------------------------------ | --------------------------------------------------------------------------------- | --------------- |
+| 1   | [**CLI + OpenAI**](#option-1-cli--openai)              | Regular use, any OpenAI-compatible API (OpenAI, OpenRouter, Ollama, local models) | Yes             |
+| 2   | [**CLI + Claude**](#option-2-cli--claude)              | Already have a Claude Code subscription, don't want another API key               | No              |
+| 3   | [**Claude Code Plugin**](#option-3-claude-code-plugin) | Already inside Claude Code, want one-command summaries                            | No              |
 
 ---
 
-### Option 1: CLI Tool
+### Option 1: CLI + OpenAI
 
-Install once, use anywhere from your terminal.
-For other installation methods, see the [Install](#install) section below.
+Install once, use anywhere from your terminal. Works with any OpenAI-compatible API — OpenAI, OpenRouter, Ollama, or any local model server.
 
 ```bash
-uv tool install git+https://github.com/dipta007/skim    # or pipx, or pip
-skim init                                               # pick backend + configure
-skim -p 2509.16538 -t story                             # plain-language narrative
-skim -p 2509.16538 -t deep                              # technical summary
-skim -p 2509.16538 -t all                               # both
-skim -p https://arxiv.org/abs/2509.16538 -t story       # works with URLs too
-skim -p 2509.16538 -t story --output-dir ./custom/      # custom output dir
-cd $(skim cd)                                           # jump to output directory
+uv tool install git+https://github.com/dipta007/skim    # or pipx, or pip, see the Install section below
+skim init                                               # select "openai", enter API key
+skim -p 2509.16538 -t story                             # generate summary
 ```
 
-During `skim init`, choose your backend:
+### Option 2: CLI + Claude
 
-- **openai** — works with OpenAI, OpenRouter, Ollama, or any service that speaks the OpenAI API
-- **claude** — uses your Claude Code subscription via `claude -p` subprocess (no API key, but slightly slower)
+Same CLI, but uses your existing Claude Code subscription — no API key needed. Requires the `claude` CLI to be installed and logged in.
 
-### Option 2: Claude Code Plugin
+```bash
+uv tool install git+https://github.com/dipta007/skim    # or pipx, or pip, see the Install section below
+skim init                                               # select "claude"
+skim -p 2509.16538 -t story                             # generate summary
+```
 
-If you're already in Claude Code, install the plugin and use slash commands — no setup, no API key.
+### Option 3: Claude Code Plugin
+
+Already inside Claude Code? Install the plugin and use slash commands — no setup, no API key.
 
 ```
 /plugin marketplace add dipta007/skim
