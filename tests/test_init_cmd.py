@@ -10,7 +10,7 @@ def test_run_init_creates_config(monkeypatch, tmp_path):
     with patch(
         "skim.init_cmd.Prompt.ask",
         side_effect=[
-            "openai-compatible",
+            "openai",
             "https://api.openai.com/v1",
             "sk-test-key",
             "gpt-5.4-nano",
