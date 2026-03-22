@@ -12,7 +12,7 @@ from skim.cache import get_cached, save
 from skim.config import load_config
 from skim.init_cmd import run_init
 from skim.latex import latex_to_unicode
-from skim.llm import generate_summary
+from skim.llm import generate_summary, prompt_hash
 
 ALL_TYPES = ["story", "deep"]
 DISPLAY_LABELS = {"story": "STORY", "deep": "DEEP DIVE"}
@@ -95,8 +95,11 @@ def main() -> None:
     summary_types = resolve_types(args.type)
     output_dir = args.output_dir or config.output_dir
 
+    prompt_hashes = {st: prompt_hash(st) for st in summary_types}
+
     all_cached = all(
-        get_cached(arxiv_id, st, output_dir) is not None for st in summary_types
+        get_cached(arxiv_id, st, prompt_hashes[st], output_dir) is not None
+        for st in summary_types
     )
 
     pdf_path: Path | None = None
@@ -112,7 +115,7 @@ def main() -> None:
 
     try:
         for st in summary_types:
-            cached_content = get_cached(arxiv_id, st, output_dir)
+            cached_content = get_cached(arxiv_id, st, prompt_hashes[st], output_dir)
             if cached_content is not None:
                 print_summary(st, cached_content, cached=True)
                 continue
@@ -127,7 +130,7 @@ def main() -> None:
                 err_console.print(f"[red bold]Error:[/] Failed to generate {st}: {e}")
                 continue
 
-            out_path = save(arxiv_id, st, result, output_dir)
+            out_path = save(arxiv_id, st, prompt_hashes[st], result, output_dir)
             err_console.print(f"[dim]Saved to {out_path}[/]")
             print_summary(st, result)
 

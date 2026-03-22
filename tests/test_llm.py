@@ -1,12 +1,22 @@
 from unittest.mock import MagicMock, patch
 
 from skim.config import Config
-from skim.llm import generate_summary, PROMPT_MAP
+from skim.llm import generate_summary, prompt_hash, PROMPT_MAP
 
 
 def test_prompt_map_has_all_types():
     assert "story" in PROMPT_MAP
     assert "deep" in PROMPT_MAP
+
+
+def test_prompt_hash_returns_8_char_hex():
+    h = prompt_hash("story")
+    assert len(h) == 8
+    assert all(c in "0123456789abcdef" for c in h)
+
+
+def test_prompt_hash_differs_between_types():
+    assert prompt_hash("story") != prompt_hash("deep")
 
 
 def test_generate_summary_calls_openai(tmp_path):
