@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Running tests..."
-uv run pytest tests/ -q
+uv run python -m pytest tests/ -q
 if [ $? -ne 0 ]; then
     echo ""
     echo "Tests failed. Fix them before pushing."
