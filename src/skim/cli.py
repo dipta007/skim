@@ -13,6 +13,7 @@ from skim.config import load_config
 from skim.init_cmd import run_init
 from skim.latex import latex_to_unicode
 from skim.llm import generate_summary, prompt_hash
+from skim.viewer import open_in_browser
 
 ALL_TYPES = ["story", "deep"]
 DISPLAY_LABELS = {"story": "STORY", "deep": "DEEP DIVE"}
@@ -73,6 +74,11 @@ def main() -> None:
         "--output-dir",
         type=Path,
         help="Override output directory for this invocation",
+    )
+    parser.add_argument(
+        "--open",
+        action="store_true",
+        help="Open summaries in browser with LaTeX rendering",
     )
 
     args = parser.parse_args()
@@ -143,11 +149,13 @@ def main() -> None:
             err_console.print(f"[red bold]Error:[/] Failed to download paper: {e}")
             sys.exit(1)
 
+    sections: list[str] = []
     try:
         for st in summary_types:
             cached_content = get_cached(arxiv_id, st, prompt_hashes[st], output_dir)
             if cached_content is not None:
                 print_summary(st, cached_content, cached=True)
+                sections.append(cached_content)
                 continue
 
             try:
@@ -163,7 +171,12 @@ def main() -> None:
             out_path = save(arxiv_id, st, prompt_hashes[st], result, output_dir)
             err_console.print(f"[dim]Saved to {out_path}[/]")
             print_summary(st, result)
+            sections.append(result)
 
     finally:
         if pdf_path is not None and pdf_path.exists():
             os.unlink(pdf_path)
+
+    if args.open and sections:
+        combined = "\n\n---\n\n".join(sections)
+        open_in_browser(combined, title=f"skim — {arxiv_id}")

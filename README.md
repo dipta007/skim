@@ -146,6 +146,10 @@ make format     # Auto-format code
 
 `make install` also configures git hooks that run the formatter/linter on commit and tests on push.
 
+## Roadmap
+
+- [ ] Add global caching (probably using a database)
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code style, and PR guidelines.
