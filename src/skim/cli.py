@@ -154,7 +154,8 @@ def main() -> None:
         for st in summary_types:
             cached_content = get_cached(arxiv_id, st, prompt_hashes[st], output_dir)
             if cached_content is not None:
-                print_summary(st, cached_content, cached=True)
+                if not args.open:
+                    print_summary(st, cached_content, cached=True)
                 sections.append(cached_content)
                 continue
 
@@ -170,7 +171,8 @@ def main() -> None:
 
             out_path = save(arxiv_id, st, prompt_hashes[st], result, output_dir)
             err_console.print(f"[dim]Saved to {out_path}[/]")
-            print_summary(st, result)
+            if not args.open:
+                print_summary(st, result)
             sections.append(result)
 
     finally:
@@ -180,3 +182,9 @@ def main() -> None:
     if args.open and sections:
         combined = "\n\n---\n\n".join(sections)
         open_in_browser(combined, title=f"skim — {arxiv_id}")
+
+    if sections:
+        for st in summary_types:
+            p = output_dir / f"{arxiv_id}_{st}_{prompt_hashes[st]}.md"
+            if p.exists():
+                err_console.print(f"[bold green]>>>[/] [cyan]{p}[/]")
