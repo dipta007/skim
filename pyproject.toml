@@ -37,3 +37,7 @@ packages = ["src/skim"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "-m 'not claude'"
+markers = [
+    "claude: tests requiring Claude Code CLI (skipped by default)",
+]

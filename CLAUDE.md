@@ -49,6 +49,14 @@ cli.py → viewer.py (browser viewer with KaTeX, only when --open is used)
 
 `arxiv.py`, `cache.py`, and `latex.py` are standalone — no internal imports.
 
+## Workflow
+
+- When changing anything, always consider impact on all three usage modes: CLI+OpenAI, CLI+Claude backend, and Claude Code plugin. Test or add tests for all three where applicable.
+- **Versioning (always prompt the user if they forget):**
+  - Patch (`0.x.Y`) for any minor change (bug fix, docs, styling).
+  - Minor (`0.X.0`) for new features or slightly major changes.
+  - Major (`X.0.0`) for final/breaking releases.
+
 ## Gotchas
 
 - `uv sync` required after switching branches — stale installs cause confusing errors (e.g., old config validation running despite new code).
