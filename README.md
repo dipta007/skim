@@ -40,6 +40,9 @@ Already inside Claude Code? Install the plugin and use slash commands — no set
 
 ```
 /plugin marketplace add dipta007/skim
+```
+
+```
 /plugin install skim@dipta007-skim
 ```
 
