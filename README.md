@@ -61,6 +61,14 @@ Claude reads the paper and generates the summary directly.
 | `story` | A plain-language, analogy-driven narrative — no jargon, no equations            |
 | `deep`  | A structured technical summary with methodology, results, and key contributions |
 
+## Browser Viewer
+
+Open summaries in the browser with proper LaTeX math rendering, dark/light theme toggle, and a readable serif font:
+
+```bash
+skim -p 2509.16538 -t deep --open
+```
+
 ## Cache Management
 
 Summaries are cached locally so repeated lookups are instant. To clear the cache:
