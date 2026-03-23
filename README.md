@@ -61,6 +61,14 @@ Claude reads the paper and generates the summary directly.
 | `story` | A plain-language, analogy-driven narrative — no jargon, no equations            |
 | `deep`  | A structured technical summary with methodology, results, and key contributions |
 
+## Browser Viewer
+
+Open summaries in the browser with proper LaTeX math rendering, dark/light theme toggle, and a readable serif font:
+
+```bash
+skim -p 2509.16538 -t deep --open
+```
+
 ## Cache Management
 
 Summaries are cached locally so repeated lookups are instant. To clear the cache:
@@ -146,9 +154,29 @@ make format     # Auto-format code
 
 `make install` also configures git hooks that run the formatter/linter on commit and tests on push.
 
+## Roadmap
+
+- [ ] Support local PDF files (not just arxiv IDs)
+- [ ] Custom prompt types — let users add their own `.md` prompts beyond story/deep
+- [ ] Export to PDF (from browser viewer / CLI flag when `--open` is not used)
+- [ ] `skim search` — semantic search over local summaries or global database
+- [ ] `skim list` — show all previously summarized papers
+- [ ] `skim history` — recently read papers
+- [ ] Global database with public summary gallery
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code style, and PR guidelines.
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=dipta007%2Fskim&type=date&legend=bottom-right">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=dipta007/skim&type=date&theme=dark&legend=bottom-right" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=dipta007/skim&type=date&legend=bottom-right" />
+   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=dipta007/skim&type=date&legend=bottom-right" />
+ </picture>
+</a>
 
 ## License
 

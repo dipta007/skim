@@ -13,7 +13,7 @@ uv run pytest tests/test_cache.py::test_get_cached_miss -v  # Single test
 uv run skim --help   # Test CLI locally (picks up source changes immediately)
 ```
 
-Git hooks (`.githooks/`): pre-commit runs ruff format+check, pre-push runs pytest. Set up automatically by `make install`.
+Git hooks (`.githooks/`): pre-commit runs ruff format+check, pre-push runs `uv run python -m pytest`. Set up automatically by `make install`. Note: bare `pytest` fails — always use `python -m pytest`.
 
 ## Architecture
 
@@ -22,7 +22,7 @@ Git hooks (`.githooks/`): pre-commit runs ruff format+check, pre-push runs pytes
 ### Data flow
 
 ```
-arxiv ID → arxiv.py (download PDF) → llm.py (dispatch to backend) → cache.py (save) → cli.py (render with rich)
+arxiv ID → arxiv.py (download PDF) → llm.py (dispatch to backend) → cache.py (save) → cli.py (render with rich) → viewer.py (optional: --open for browser with KaTeX)
 ```
 
 ### Key design decisions
@@ -44,6 +44,7 @@ llm.py → claude_backend.py (lazy import, only when backend == "claude")
 cli.py → arxiv.py
 cli.py → cache.py
 cli.py → latex.py
+cli.py → viewer.py (browser viewer with KaTeX, only when --open is used)
 ```
 
 `arxiv.py`, `cache.py`, and `latex.py` are standalone — no internal imports.
@@ -57,3 +58,5 @@ cli.py → latex.py
 - When bumping version in `pyproject.toml` and `__init__.py`, also update: `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and `tests/test_cli.py::test_main_version`.
 - Claude Code plugin cache (`~/.claude/plugins/cache/skim/`) is keyed by version. Bumping the version in `plugin.json` + `marketplace.json` is required to force users to get updated skills. Uninstall + reinstall is not enough without a version bump.
 - Skills in `skills/*/SKILL.md` must only use `name` and `description` in YAML frontmatter. Other fields (like `allowed-tools`, `argument-hint`) break skill registration silently.
+- When embedding JavaScript regex in Python `.format()` templates, do regex/string processing in Python instead. Backslash escaping between Python string literals → `.format()` → JavaScript is extremely error-prone.
+- LLM output can contain UTF-8 surrogates. When writing to files, use binary mode with `.encode("utf-8", errors="replace")` to avoid `UnicodeEncodeError`.
