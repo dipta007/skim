@@ -167,6 +167,14 @@ make format     # Auto-format code
 - [ ] `skim search` — semantic search over local summaries or global database
 - [ ] Global database with public summary gallery
 
+## Related Projects
+
+- [autoresearch](https://github.com/karpathy/autoresearch) — Autonomous AI agent that iteratively modifies LLM training code, runs experiments, and discovers improvements overnight
+- [research-junshi](https://github.com/junshi-research/research-junshi) — Claude Code skill that tracks new arXiv papers daily and proposes ranked research directions tailored to your work
+- [ChatPaper](https://github.com/kaixindelele/ChatPaper) — ChatGPT-powered arxiv paper summarizer with translation, review generation, and polishing
+- [paper-qa](https://github.com/Future-House/paper-qa) — RAG-based Q&A over collections of scientific PDFs with inline citations
+- [arxiv-mcp-server](https://github.com/blazickjp/arxiv-mcp-server) — MCP server for AI assistants to search, download, and read arxiv papers
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code style, and PR guidelines.
