@@ -56,6 +56,7 @@ cli.py → viewer.py (browser viewer with KaTeX, only when --open is used)
   - Patch (`0.x.Y`) for any minor change (bug fix, docs, styling).
   - Minor (`0.X.0`) for new features or slightly major changes.
   - Major (`X.0.0`) for final/breaking releases.
+  - Always grep the repo for the old version string to find all locations that need updating.
 
 ## Gotchas
 

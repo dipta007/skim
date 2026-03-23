@@ -1,10 +1,10 @@
 [project]
 name = "skim"
-version = "0.5.0"
+version = "0.5.1"
 description = "Generate plain-language narratives and technical summaries from arxiv papers"
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.14"
+requires-python = ">=3.12"
 authors = [
     { name = "Shubhashis Roy Dipta", email = "iamdipta@gmail.com" },
 ]

@@ -65,7 +65,7 @@ HTML_TEMPLATE = """\
 
   let html = marked.parse(md);
 
-  html = html.replace(/%%MATH(\d+)%%/g, (_, idx) => {{
+  html = html.replace(/%%MATH(\\d+)%%/g, (_, idx) => {{
     const b = mathBlocks[parseInt(idx)];
     try {{ return katex.renderToString(b.math.trim(), {{displayMode: b.display, throwOnError: false}}); }}
     catch(e) {{ return b.math; }}
