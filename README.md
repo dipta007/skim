@@ -2,7 +2,7 @@
 
 Generate plain-language narratives and technical summaries from arxiv papers.
 
-<video src="assets/demo.mp4" autoplay loop muted playsinline></video>
+![demo](assets/demo.gif)
 
 ## Three Ways to Use skim
 
