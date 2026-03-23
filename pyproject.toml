@@ -1,6 +1,6 @@
 [project]
 name = "skim"
-version = "0.2.0"
+version = "0.4.0"
 description = "Generate plain-language narratives and technical summaries from arxiv papers"
 readme = "README.md"
 license = "MIT"
