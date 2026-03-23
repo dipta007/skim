@@ -148,7 +148,13 @@ make format     # Auto-format code
 
 ## Roadmap
 
-- [ ] Add global caching (probably using a database)
+- [ ] Support local PDF files (not just arxiv IDs)
+- [ ] Custom prompt types — let users add their own `.md` prompts beyond story/deep
+- [ ] Export to PDF (from browser viewer / CLI flag when `--open` is not used)
+- [ ] `skim search` — semantic search over local summaries or global database
+- [ ] `skim list` — show all previously summarized papers
+- [ ] `skim history` — recently read papers
+- [ ] Global database with public summary gallery
 
 ## Contributing
 
