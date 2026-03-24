@@ -6,6 +6,7 @@ A curated list of tools for AI-powered academic research workflows.
 
 - [autoresearch](https://github.com/karpathy/autoresearch) — Autonomous AI agent that iteratively modifies LLM training code, runs experiments, and discovers improvements overnight
 - [autoresearch-macos](https://github.com/miolini/autoresearch-macos) — macOS app version of autoresearch with a user-friendly interface and support for multiple LLMs
+- [autoresearch-mlx](https://github.com/trevin-creator/autoresearch-mlx) — Apple Silicon (MLX) port of Karpathy's autoresearch — autonomous AI research loops on Mac, no PyTorch required.
 - [ChatPaper](https://github.com/kaixindelele/ChatPaper) — ChatGPT-powered arxiv paper summarizer with translation, review generation, and polishing
 - [paper-qa](https://github.com/Future-House/paper-qa) — RAG-based Q&A over collections of scientific PDFs with inline citations
 - [AutoResearchClaw](https://github.com/aiming-lab/AutoResearchClaw) — Fully autonomous & self-evolving research from idea to paper. Chat an Idea. Get a Paper. 🦞
