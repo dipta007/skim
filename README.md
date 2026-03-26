@@ -159,6 +159,7 @@ make format     # Auto-format code
 
 ## Roadmap
 
+- [ ] Support `hf papers read` cli to fetch papers from Hugging Face and summarize them (less tokens)
 - [ ] Support local PDF files (not just arxiv IDs)
 - [ ] `skim list` — show all previously summarized papers
 - [ ] `skim history` — recently read papers
